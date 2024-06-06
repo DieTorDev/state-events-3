@@ -31,8 +31,8 @@ const UsersCards = ({ showActive, search, order }) => {
 
 const checkArray = showActive => {
 	return showActive
-		? USERS.filter(({ active }) => active === showActive)
-		: USERS;
+		? [...USERS].filter(({ active }) => active === showActive)
+		: [...USERS];
 };
 
 const sortArray = (order, checkedArray) => {
