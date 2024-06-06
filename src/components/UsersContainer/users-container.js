@@ -7,7 +7,7 @@ const StyledUserCard = styled.article`
 	align-items: center;
 	box-shadow: 1px 1px 10px -1px rgba(0, 0, 0, 0.75);
 	border-radius: 10px;
-	height: 90px;
+	height: 70px;
 	padding: 20px;
 `;
 

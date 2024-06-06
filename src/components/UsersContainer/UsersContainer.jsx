@@ -8,8 +8,12 @@ import {
 	StyledUserName
 } from './users-container';
 
-const UsersCards = () => {
-	return USERS.map(user => (
+const UsersCards = ({ showActive, search, order }) => {
+	const checkedArray = checkArray(showActive);
+	const sortedArray = sortArray(order, checkedArray);
+	const finalArray = searchArray(search, sortedArray);
+
+	return finalArray.map(user => (
 		<StyledUserCard key={user.userId}>
 			<StyledUserInfo>
 				<StyledProfileImg src={user.profileImage} alt={user.name} />
@@ -23,6 +27,24 @@ const UsersCards = () => {
 			</StyledActive>
 		</StyledUserCard>
 	));
+};
+
+const checkArray = showActive => {
+	return showActive
+		? USERS.filter(({ active }) => active === showActive)
+		: USERS;
+};
+
+const sortArray = (order, checkedArray) => {
+	return order === 'alphabetically'
+		? checkedArray.sort((a, b) => (a.name > b.name ? 1 : -1))
+		: checkedArray;
+};
+
+const searchArray = (search, sortedArray) => {
+	return sortedArray.filter(({ name }) =>
+		name.toLowerCase().includes(search.toLowerCase())
+	);
 };
 
 export default UsersCards;
